@@ -30,10 +30,10 @@ Example "pretty-print" output:
     	(search time: PT2.209S)
 	
     Maximum similarity between "horse" and "person" is... 0.5454545454545454 for: 
-	concept 1: 	[Equus caballus, horse] (http://wordnet-rdf.princeton.edu/wn31/102377103-n) 
-	concept 2: 	[soul, mortal, individual, somebody, someone, person] (http://wordnet-rdf.princeton.edu/wn31/100007846-n) 
-	lcs concept:	[organism, being] (http://wordnet-rdf.princeton.edu/wn31/100004475-n) 
-	(search time: PT2.647S)
+		concept 1: 	[Equus caballus, horse] (http://wordnet-rdf.princeton.edu/wn31/102377103-n) 
+		concept 2: 	[soul, mortal, individual, somebody, someone, person] (http://wordnet-rdf.princeton.edu/wn31/100007846-n) 
+		lcs concept:	[organism, being] (http://wordnet-rdf.princeton.edu/wn31/100004475-n) 
+		(search time: PT2.647S)
 
 
 
