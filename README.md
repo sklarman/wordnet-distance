@@ -8,7 +8,9 @@ http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-us
 
 The formula is score = 2 * depth (lcs) / (depth (s1) + depth (s2))." [ibid]
 
-The service needs to be accompanied by a specially transformed wordnet RDF db, included in this repo. This needs to be unpacked in the main directory. 
+The service needs to be accompanied by a specially transformed wordnet RDF db, that can be downloaded from:
+https://www.dropbox.com/s/8umyuun3izuazp5/wordnet-distance.ttl.zip?dl=0
+The zip needs to be unpacked in the main service directory. 
 
 A full example of setting up and running the service is included in the Test class. 
 
