@@ -16,25 +16,44 @@ A full example of setting up and using the wordnet-distance is included in the *
 Example "pretty-print" output:
 ------------------------------
 
+Observe how context of the same word changes depending on the choic of the other word it is compared to. In this implementation, the service searches for the most similar meaning, hence implicitly disambiguating them towards the closest context both words share. 
 
-    Maximum similarity between "chair" and "leader" is... 0.8888888888888888 for:
-    	concept 1: 	[chairwoman, chairperson, chair, chairman, president] (http://wordnet-rdf.princeton.edu/wn31/110488547-n)
-    	concept 2: 	[leader] (http://wordnet-rdf.princeton.edu/wn31/109646208-n)
-    	lcs concept:	[leader] (http://wordnet-rdf.princeton.edu/wn31/109646208-n)
-    	(search time: PT7.254S)
-    
-    Maximum similarity between "universe" and "galaxy" is... 0.8 for:
-    	concept 1: 	[universe, population] (http://wordnet-rdf.princeton.edu/wn31/106035684-n)
-    	concept 2: 	[galaxy] (http://wordnet-rdf.princeton.edu/wn31/108287859-n)
-    	lcs concept:	[accumulation, assemblage, aggregation, collection] (http://wordnet-rdf.princeton.edu/wn31/107968050-n)
-    	(search time: PT2.209S)
-	
-    Maximum similarity between "horse" and "person" is... 0.5454545454545454 for: 
-		concept 1: 	[Equus caballus, horse] (http://wordnet-rdf.princeton.edu/wn31/102377103-n) 
-		concept 2: 	[soul, mortal, individual, somebody, someone, person] (http://wordnet-rdf.princeton.edu/wn31/100007846-n) 
-		lcs concept:	[organism, being] (http://wordnet-rdf.princeton.edu/wn31/100004475-n) 
-		(search time: PT2.647S)
+```
+Maximum similarity between "school" and "university" is... 0.875 for:
+	concept 1: 	[school] (http://wordnet-rdf.princeton.edu/wn31/108293641-n)
+	concept 2: 	[university] (http://wordnet-rdf.princeton.edu/wn31/108303490-n)
+	lcs concept:	[educational institution] (http://wordnet-rdf.princeton.edu/wn31/108293263-n)
+	(search time: PT4.97S)
 
+Maximum similarity between "university" and "company" is... 0.8 for:
+	concept 1: 	[university] (http://wordnet-rdf.princeton.edu/wn31/108303490-n)
+	concept 2: 	[company] (http://wordnet-rdf.princeton.edu/wn31/108074934-n)
+	lcs concept:	[institution, establishment] (http://wordnet-rdf.princeton.edu/wn31/108070328-n)
+	(search time: PT0.952S)
 
+Maximum similarity between "company" and "business" is... 0.7692307692307693 for:
+	concept 1: 	[troupe, company] (http://wordnet-rdf.princeton.edu/wn31/108203951-n)
+	concept 2: 	[business, business organisation, concern, business organization, business concern] (http://wordnet-rdf.princeton.edu/wn31/108077878-n)
+	lcs concept:	[organisation, organization] (http://wordnet-rdf.princeton.edu/wn31/108024893-n)
+	(search time: PT4.491S)
+
+Maximum similarity between "business" and "market" is... 0.8571428571428571 for:
+	concept 1: 	[line of work, occupation, business, line, job] (http://wordnet-rdf.princeton.edu/wn31/100583425-n)
+	concept 2: 	[marketplace, market, market place] (http://wordnet-rdf.princeton.edu/wn31/101099197-n)
+	lcs concept:	[activity] (http://wordnet-rdf.princeton.edu/wn31/100408356-n)
+	(search time: PT4.761S)
+
+Maximum similarity between "company" and "friendship" is... 0.9230769230769231 for:
+	concept 1: 	[fellowship, society, companionship, company] (http://wordnet-rdf.princeton.edu/wn31/113952621-n)
+	concept 2: 	[friendship, friendly relationship] (http://wordnet-rdf.princeton.edu/wn31/113954178-n)
+	lcs concept:	[friendship, friendly relationship] (http://wordnet-rdf.princeton.edu/wn31/113954178-n)
+	(search time: PT3.873S)
+
+Maximum similarity between "friendship" and "love" is... 0.6153846153846154 for:
+	concept 1: 	[friendship, friendly relationship] (http://wordnet-rdf.princeton.edu/wn31/113954178-n)
+	concept 2: 	[love] (http://wordnet-rdf.princeton.edu/wn31/107558676-n)
+	lcs concept:	[state] (http://wordnet-rdf.princeton.edu/wn31/100024900-n)
+	(search time: PT0.742S)
+```
 
 
