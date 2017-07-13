@@ -9,7 +9,7 @@ http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-us
 **The formula is score = 2 * depth (lcs) / (depth (s1) + depth (s2)).**"
 [ibid]
 
-Wordnet-distance is an in-memory service built on top of Jena and its embedded Lucene library, and uses a specially tailored wordnet RDF graph, which is supplied within this repository (**wordnet-distance.ttl.zip**). The zip file must be unpacked in the main service's directory. 
+WordnNet-distance is an in-memory service built on top of Jena and its embedded Lucene library, and uses a specially tailored WordNet RDF graph, which is supplied within this repository (**wordnet-distance.ttl.zip**). The zip file must be unpacked in the main service's directory. 
 
 Examples:
 ------------------------------
@@ -69,5 +69,5 @@ http://localhost:4567?word1=chick&word2=girl&details=true
   "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/110149362-n"
 }
 ```
-...right, really disturbing, but it's the language, simply encoded by WordNet. 
+...right, disturbing, but it's our language, simply encoded by WordNet. 
 
