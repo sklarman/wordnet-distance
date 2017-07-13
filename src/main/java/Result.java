@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -5,11 +6,21 @@ import java.util.Set;
  */
 public class Result {
     public Double score;
-    public Set<String> justificiation;
-    public String lcsConcept;
-    public Set<String> context1;
-    public String concept1;
-    public Set<String> context2;
-    public String concept2;
+    public Set<String> leastCommonSubsumer;
+    public String leastCommonSubsumerUri;
+    public Set<String> conceptOne;
+    public String conceptOneUri;
+    public Set<String> conceptTwo;
+    public String conceptTwoUri;
+
+    public Result() {
+        score = 0.0;
+        leastCommonSubsumer = new HashSet<>();
+        conceptOne = new HashSet<>();
+        conceptTwo = new HashSet<>();
+        leastCommonSubsumerUri = "";
+        conceptOneUri = "";
+        conceptTwoUri = "";
+    }
 
 }

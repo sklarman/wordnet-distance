@@ -1,5 +1,5 @@
 # WordNet-distance
-WordNet-based concept similarity measure service.
+WordNet-based concept similarity measure rest API service.
 
 The service is a simple implementation of the Wu & Palmer similarity measure, as described e.g., in: 
 http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-using-wupalmer-algorithm/
@@ -9,51 +9,65 @@ http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-us
 **The formula is score = 2 * depth (lcs) / (depth (s1) + depth (s2)).**"
 [ibid]
 
-Wordnet-distance uses a specially tailored wordnet RDF graph, which is supplied within this repository (**wordnet-distance.ttl.zip**). The zip file must be unpacked in the main service's directory. 
+Wordnet-distance is an in-memory service built on top of Jena and its embedded Lucene library, and uses a specially tailored wordnet RDF graph, which is supplied within this repository (**wordnet-distance.ttl.zip**). The zip file must be unpacked in the main service's directory. 
 
-A full example of setting up and using the wordnet-distance is included in the **Test** class. 
-
-Example "pretty-print" output:
+Examples:
 ------------------------------
 
 Observe how the sense of the same word changes depending on the choice of the other word it is compared to. In this implementation, the service searches for the most similar meaning, hence implicitly disambiguating the words towards the closest possible context that both words share.
 
 ```
-Maximum similarity between "school" and "university" is... 0.875 for:
-	concept 1: 	[school] (http://wordnet-rdf.princeton.edu/wn31/108293641-n)
-	concept 2: 	[university] (http://wordnet-rdf.princeton.edu/wn31/108303490-n)
-	lcs concept:	[educational institution] (http://wordnet-rdf.princeton.edu/wn31/108293263-n)
-	(search time: PT4.97S)
+// "guy" vs. "dick"
+http://localhost:4567?word1=dick&word2=asshole&details=true
 
-Maximum similarity between "university" and "company" is... 0.8 for:
-	concept 1: 	[university] (http://wordnet-rdf.princeton.edu/wn31/108303490-n)
-	concept 2: 	[company] (http://wordnet-rdf.princeton.edu/wn31/108074934-n)
-	lcs concept:	[institution, establishment] (http://wordnet-rdf.princeton.edu/wn31/108070328-n)
-	(search time: PT0.952S)
+{
+  "score": 0.6086956521739131,
+  "leastCommonSubsumer": ["someone","individual","soul","person","somebody","mortal"],
+  "leastCommonSubsumerUri": "http://wordnet-rdf.princeton.edu/wn31/100007846-n",
+  "conceptOne": ["cat","hombre","sod","guy","bozo"],
+  "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/109834593-n"
+  "conceptTwon": ["dick","gumshoe","hawkshaw"],
+  "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/110031439-n",
+}
 
-Maximum similarity between "company" and "business" is... 0.7692307692307693 for:
-	concept 1: 	[troupe, company] (http://wordnet-rdf.princeton.edu/wn31/108203951-n)
-	concept 2: 	[business, business organisation, concern, business organization, business concern] (http://wordnet-rdf.princeton.edu/wn31/108077878-n)
-	lcs concept:	[organisation, organization] (http://wordnet-rdf.princeton.edu/wn31/108024893-n)
-	(search time: PT4.491S)
+// "dick" vs. "cock"
+http://localhost:4567?word1=dick&word2=cock&details=true
 
-Maximum similarity between "business" and "market" is... 0.8571428571428571 for:
-	concept 1: 	[line of work, occupation, business, line, job] (http://wordnet-rdf.princeton.edu/wn31/100583425-n)
-	concept 2: 	[marketplace, market, market place] (http://wordnet-rdf.princeton.edu/wn31/101099197-n)
-	lcs concept:	[activity] (http://wordnet-rdf.princeton.edu/wn31/100408356-n)
-	(search time: PT4.761S)
+{
+  "score": 1,
+  "leastCommonSubsumer": ["prick","dick","pecker","cock","tool","shaft","putz"],
+  "leastCommonSubsumerUri": "http://wordnet-rdf.princeton.edu/wn31/105534354-n",
+  "conceptOne": ["prick","dick","pecker","cock","tool","shaft","putz"],
+  "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/105534354-n",
+  "conceptTwo": ["prick","dick","pecker","cock","tool","shaft","putz"],
+  "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/105534354-n"
+}
 
-Maximum similarity between "company" and "friendship" is... 0.9230769230769231 for:
-	concept 1: 	[fellowship, society, companionship, company] (http://wordnet-rdf.princeton.edu/wn31/113952621-n)
-	concept 2: 	[friendship, friendly relationship] (http://wordnet-rdf.princeton.edu/wn31/113954178-n)
-	lcs concept:	[friendship, friendly relationship] (http://wordnet-rdf.princeton.edu/wn31/113954178-n)
-	(search time: PT3.873S)
+// "cock" vs. "chick"
+http://localhost:4567?word1=cock&word2=chick&details=true
 
-Maximum similarity between "friendship" and "love" is... 0.6153846153846154 for:
-	concept 1: 	[friendship, friendly relationship] (http://wordnet-rdf.princeton.edu/wn31/113954178-n)
-	concept 2: 	[love] (http://wordnet-rdf.princeton.edu/wn31/107558676-n)
-	lcs concept:	[state] (http://wordnet-rdf.princeton.edu/wn31/100024900-n)
-	(search time: PT0.742S)
+{
+  "score": 0.9285714285714286,
+  "leastCommonSubsumer": ["chicken","Gallus gallus"],
+  "leastCommonSubsumerUri": "http://wordnet-rdf.princeton.edu/wn31/101794266-n",
+  "conceptOne": ["rooster","cock"],
+  "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/101794799-n",
+  "conceptTwo": ["biddy","chick"],
+  "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/101794683-n"
+}
+
+// "chick" vs. "girl"
+http://localhost:4567?word1=chick&word2=girl&details=true
+
+{
+  "score": 0.9523809523809523,
+  "leastCommonSubsumer": ["young lady","young woman","missy","girl","fille","miss"],
+  "leastCommonSubsumerUri": "http://wordnet-rdf.princeton.edu/wn31/110149362-n",
+  "conceptOne": ["doll","skirt","bird","wench","dame","chick"],
+  "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/110008583-n",
+  "conceptTwo": ["young lady","young woman","missy","girl","fille","miss"],
+  "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/110149362-n"
+}
 ```
-
+...right, really disturbing, but it's the language, simply encoded by WordNet. 
 
