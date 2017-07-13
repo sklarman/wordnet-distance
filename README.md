@@ -25,7 +25,7 @@ http://localhost:4567?word1=dick&word2=asshole&details=true
   "leastCommonSubsumer": ["someone","individual","soul","person","somebody","mortal"],
   "leastCommonSubsumerUri": "http://wordnet-rdf.princeton.edu/wn31/100007846-n",
   "conceptOne": ["cat","hombre","sod","guy","bozo"],
-  "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/100007846-n"
+  "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/110172934-n"
   "conceptTwon": ["dick","gumshoe","hawkshaw"],
   "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/110031439-n",
 }
