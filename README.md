@@ -16,7 +16,7 @@ A full example of setting up and using the wordnet-distance is included in the *
 Example "pretty-print" output:
 ------------------------------
 
-Observe how context of the same word changes depending on the choic of the other word it is compared to. In this implementation, the service searches for the most similar meaning, hence implicitly disambiguating them towards the closest context both words share. 
+Observe how the sense of the same word changes depending on the choice of the other word it is compared to. In this implementation, the service searches for the most similar meaning, hence implicitly disambiguating the words towards the closest possible context that both words share.
 
 ```
 Maximum similarity between "school" and "university" is... 0.875 for:
