@@ -1,5 +1,5 @@
 # WordNet-distance
-WordNet-based concept similarity measure rest API service.
+WordNet-based concept similarity measure (Rest API).
 
 The service is a simple implementation of the Wu & Palmer similarity measure, as described e.g., in: 
 http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-using-wupalmer-algorithm/
