@@ -19,6 +19,7 @@ import java.util.Set;
 public class WordnetSimilarityService {
 
     static Dataset ds;
+    static String NOT_FOUND_MESSAGE = "Word \"%s\" not found.";
 
     static final String uriSearchQuery =
          "PREFIX text: <http://jena.apache.org/text#>\n" +
@@ -69,20 +70,12 @@ public class WordnetSimilarityService {
 
     public static Result similarity(String word1, String word2, Boolean details) throws Exception {
 
+        Instant start = Instant.now();
+        System.out.print(word1 + " - " + word2);
         Result result = new Result();
 
-        String uris1;
-        String uris2;
-
-        try {uris1 = getUris(word1);} catch (Exception e)
-        {
-            throw new NotFoundException("Word \""+word1+"\" not found.");
-        }
-
-        try {uris2 = getUris(word2);} catch (Exception e)
-        {
-            throw new NotFoundException("Word \""+word2+" not found.");
-        }
+        String uris1 = getUris(word1);
+        String uris2 = getUris(word2);
 
         Query query = QueryFactory.create(String.format(mainQuery, uris1, uris2));
         QueryExecution qexec = QueryExecutionFactory.create(query, ds);
@@ -94,6 +87,8 @@ public class WordnetSimilarityService {
         QuerySolution soln = results.next();
         result.score = soln.get("?score").asLiteral().getDouble();
 
+        System.out.println("\t"+result.score);
+
         if (details) {
             result.conceptOneUri = soln.get("?w1").toString();
             result.conceptTwoUri = soln.get("?w2").toString();
@@ -102,7 +97,8 @@ public class WordnetSimilarityService {
             result.conceptOne.addAll(getLabels(result.conceptOneUri));
             result.conceptTwo.addAll(getLabels(result.conceptTwoUri));
         }
-
+        Instant end = Instant.now();
+        System.out.println(Duration.between(start,end));
         return result;
     }
 
@@ -118,7 +114,8 @@ public class WordnetSimilarityService {
                 return soln.get("?uris").asLiteral().toString();
         }
         System.out.println("Word: \"" + word + "\" not found.");
-        throw new Exception();
+
+        throw new NotFoundException(String.format(NOT_FOUND_MESSAGE, word));
     }
 
 

@@ -22,7 +22,7 @@ public class Main {
         "Required query parameters:\n" +
         "\t'word1':\t(String) first word\n" +
         "\t'word2':\t(String) second word\n" +
-        "\t'details':\t(Boolean) additional details about the score";
+        "\t'details':\t(Boolean) additional details about the score\n";
 
     public static void main(String[] args) {
         BasicConfigurator.configure();
