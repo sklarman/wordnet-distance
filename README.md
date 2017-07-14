@@ -12,17 +12,17 @@ http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-us
 
 WordnNet-distance uses in-memory Jena triplestore with its embedded Lucene library. It requires a specifically structured WordNet RDF graph, which is supplied within this repository (**wordnet-distance.ttl.zip**). The zip file must be unpacked in the main service's directory. 
 
-The service runs at http://localhost:4567 and requires the follwoing parameters:
+The service runs at http://localhost:4567 and requires the following query parameters:
 
-*'word1':	(String) first word
-*'word2':	(String) second word
-*'details':	(Boolean) additional details about the score
+* 'word1':	(String) first word
+* 'word2':	(String) second word
+* 'details':	(Boolean) additional details about the score
 
 
 Examples:
 ------------------------------
 
-Observe how the sense of the same word changes depending on the choice of the other word it is compared to. In this implementation, the service searches for the most similar meaning, hence implicitly disambiguating the words towards the closest possible context that both words share.
+Observe how the sense of the same word changes depending on the choice of the other word it is compared to. In this implementation, the service searches for the most similar meaning, thus implicitly disambiguating the words towards the closest possible context that both words share.
 
 ```
 // "mind" vs. "consider"
