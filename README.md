@@ -70,5 +70,3 @@ http://localhost:4567?word1=chick&word2=girl&details=true
   "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/110149362-n"
 }
 ```
-...right, disturbing, but it's our language, simply encoded by WordNet. 
-
