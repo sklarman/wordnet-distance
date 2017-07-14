@@ -7,6 +7,7 @@ http://blog.thedigitalgroup.com/sagarg/2015/06/10/words-similarityrelatedness-us
 "*The Wu & Palmer calculates relatedness by considering the depths of the two synsets in the WordNet taxonomies, along with the depth of the LCS (Least Common Subsumer).*
 
 **The formula is score = 2 * depth (lcs) / (depth (s1) + depth (s2)).**"
+
 [ibid]
 
 WordnNet-distance is an in-memory service built on top of Jena and its embedded Lucene library, and uses a specially tailored WordNet RDF graph, which is supplied within this repository (**wordnet-distance.ttl.zip**). The zip file must be unpacked in the main service's directory. 
@@ -26,7 +27,7 @@ http://localhost:4567?word1=dick&word2=asshole&details=true
   "leastCommonSubsumerUri": "http://wordnet-rdf.princeton.edu/wn31/100007846-n",
   "conceptOne": ["cat","hombre","sod","guy","bozo"],
   "conceptOneUri": "http://wordnet-rdf.princeton.edu/wn31/110172934-n"
-  "conceptTwon": ["dick","gumshoe","hawkshaw"],
+  "conceptTwo": ["dick","gumshoe","hawkshaw"],
   "conceptTwoUri": "http://wordnet-rdf.princeton.edu/wn31/110031439-n",
 }
 
