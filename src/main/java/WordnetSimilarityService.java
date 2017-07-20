@@ -108,7 +108,7 @@ public class WordnetSimilarityService {
 
         Set<String> words = new HashSet<>(Arrays.asList(label.split(",")));
         Set<String> outWords = new HashSet<>();
-        for (String word : words) outWords.add("\"word\"");
+        for (String word : words) outWords.add("\""+word+"\"");
         String values = String.join(" ", outWords);
         Query uriQuery = QueryFactory.create(String.format(uriSearchQuery, values));
         QueryExecution qexec = QueryExecutionFactory.create(uriQuery, ds);
