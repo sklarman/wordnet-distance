@@ -26,8 +26,9 @@ public class WordnetSimilarityService {
          "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
          "SELECT (GROUP_CONCAT(CONCAT(\"<\",str(?s),\">\");separator=\" \") as ?uris)\n" +
          "WHERE { " +
-                "?s text:query (rdfs:label \"%s\") . " +
-                "?s rdfs:label ?l . FILTER(str(?l)=\"%s\")" +
+                "VALUES ?text {%s}" +
+                "?s text:query (rdfs:label ?text) . " +
+                "?s rdfs:label ?l . FILTER(str(?l)=?text)" +
                  "}";
 
     static final String mainQuery =
@@ -45,7 +46,7 @@ public class WordnetSimilarityService {
                 "?p <dist_to> ?lcs . \n" +
                 "?p <dist> ?d2 .\n" +
                 "?lcs <depth> ?lcsd .\n" +
-                "BIND(xsd:double(2*?lcsd)/xsd:double(2*?lcsd+?d1+?d2) as ?score)" +
+                "BIND(xsd:double(2*?lcsd)/xsd:double(2*?lcsd+?d1+20*?d2) as ?score)" +
                 "} ORDER BY desc(?score) LIMIT 1 ";
 
     static final String labelQuery =
@@ -68,14 +69,14 @@ public class WordnetSimilarityService {
         ds.begin(ReadWrite.READ) ;
     }
 
-    public static Result similarity(String word1, String word2, Boolean details) throws Exception {
+    public static Result similarity(String label1, String label2, Boolean details) throws Exception {
 
         Instant start = Instant.now();
-        System.out.print(word1 + " - " + word2);
+        System.out.print(label1 + " - " + label2);
         Result result = new Result();
 
-        String uris1 = getUris(word1);
-        String uris2 = getUris(word2);
+        String uris1 = getUris(label1);
+        String uris2 = getUris(label2);
 
         Query query = QueryFactory.create(String.format(mainQuery, uris1, uris2));
         QueryExecution qexec = QueryExecutionFactory.create(query, ds);
@@ -103,9 +104,13 @@ public class WordnetSimilarityService {
     }
 
 
-    public static String getUris(String word) throws Exception {
+    public static String getUris(String label) throws Exception {
 
-        Query uriQuery = QueryFactory.create(String.format(uriSearchQuery, word, word));
+        Set<String> words = new HashSet<>(Arrays.asList(label.split(",")));
+        Set<String> outWords = new HashSet<>();
+        for (String word : words) outWords.add("\"word\"");
+        String values = String.join(" ", outWords);
+        Query uriQuery = QueryFactory.create(String.format(uriSearchQuery, values));
         QueryExecution qexec = QueryExecutionFactory.create(uriQuery, ds);
         ResultSet results = qexec.execSelect();
         if (results.hasNext()) {
@@ -113,9 +118,9 @@ public class WordnetSimilarityService {
             if (!soln.get("?uris").asLiteral().toString().isEmpty())
                 return soln.get("?uris").asLiteral().toString();
         }
-        System.out.println("Word: \"" + word + "\" not found.");
+        System.out.println("Values: \"" + values + "\" not found.");
 
-        throw new NotFoundException(String.format(NOT_FOUND_MESSAGE, word));
+        throw new NotFoundException(String.format(NOT_FOUND_MESSAGE, values));
     }
 
 
