@@ -20,8 +20,8 @@ public class Main {
         "****************\n\n" +
         "URL: http://localhost:4567\n" +
         "Required query parameters:\n" +
-        "\t'word1':\t(String) first word\n" +
-        "\t'word2':\t(String) second word\n" +
+        "\t'word1':\t(String) comma-seperated word list\n" +
+        "\t'word2':\t(String) comma-seperated word list\n" +
         "\t'details':\t(Boolean) additional details about the score\n";
 
     public static void main(String[] args) {
